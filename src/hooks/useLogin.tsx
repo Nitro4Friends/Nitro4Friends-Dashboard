@@ -37,11 +37,11 @@ function useLogin(): LoginObject {
         console.log(`Fetching user data with uid ${uid}...`)
         const response = await fetch(`${DATA_URL}`, {
             method: 'GET',
-            credentials: "include",
+
             headers: {'Authorization': `Bearer ${uid}`},
         });
         const data = await response.json();
-        if (data.user) setUser(data.user);
+        if (data) setUser(data as ClientPublicDataModel);
     }, [uid])
 
     useEffect(() => {
